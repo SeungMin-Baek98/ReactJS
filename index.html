@@ -8,44 +8,23 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    function Title() {
-      return (
-        <h3 id="title" onMouseEnter={() => console.log("Mouse Enter!!")}>
-          Hello I'm a title!!
-        </h3>
-      );
+    let counter = 0;
+    function plusButton() {
+      counter = counter + 1;
+      render();
     }
-
-    function Button() {
-      return (
-        <button
-          onClick={() => console.log("I'm clicked!!")}
-          style={{ backgroundColor: "tomato" }}
-        >
-          Click me!!!
-        </button>
-      );
+    //render 함수가 없으면 새로고침해주는 기능이 없기떄문에 counter가 UI로는 계속 0 이 될것이다.
+    //왜냐!? ReactDOM.render()는 <Container /> 를 한 번만 실행하기때문이다.
+    //개발자도구에서 콘솔로 확인하면 counter는 증가하지만 UI는 계속 0이된다! <- 그렇게 좋은 방법들은 아니다.
+    function render() {
+      ReactDOM.render(<App />, root);
     }
-    // const span = React.createElement(
-    //   "h3",
-    //   {
-    //     onMouseEnter: () => console.log("Mouse Enter!!"),
-    //   },
-    //   "Hello I'm a span"
-    // );
-    // const btn = React.createElement(
-    //   "button",
-    //   {
-    //     onClick: () => console.log("I'm Clicked"),
-    //   },
-    //   "Click me!!"
-    // );
-    const Container = () => (
+    const App = () => (
       <div>
-        <Title />
-        <Button />
+        <h3>Total Clicks : {counter}</h3>
+        <button onClick={plusButton}>Click me!!</button>
       </div>
     );
-    ReactDOM.render(<Container />, root);
+    render();
   </script>
 </html>
