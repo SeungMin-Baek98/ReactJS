@@ -12,7 +12,7 @@
 
   <script type="text/babel">
     function MinutesToHours() {
-      const [amount, setAmount] = React.useState(0);
+      const [amount, setAmount] = React.useState();
       const [inverted, setInverted] = React.useState(false);
       const onChange = (event) => {
         setAmount(event.target.value);
@@ -58,7 +58,7 @@
       );
     }
     function KmToMiles() {
-      const [number, setNumber] = React.useState(0);
+      const [number, setNumber] = React.useState();
       const [disabled, setDisabled] = React.useState(false);
       const onChange = (event) => {
         setNumber(event.target.value);
